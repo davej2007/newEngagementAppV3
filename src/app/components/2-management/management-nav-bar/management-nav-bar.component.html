@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">    
+    <a class="navbar-brand" routerLink="/">Management{{ envName }}</a>
+    
+    <button 
+        class="navbar-toggler navbar-toggler-right"
+        type="button" (click)="toggleCollapse()">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div [ngbCollapse]="showMainNav" class="navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" >
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/management/noticeboard"
+                *ngIf='_AUTH.adminRights([1])' routerLinkActive="active">Notice Board</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/management/rota"
+                *ngIf='_AUTH.adminRights([2])' routerLinkActive="active">Rota</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/management/startTimes"
+                *ngIf='_AUTH.adminRights([3])' routerLinkActive="active">Start Times</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/management/holidays"
+                *ngIf='_AUTH.adminRights([4])' routerLinkActive="active">Holidays</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/management/button5"
+                *ngIf='_AUTH.adminRights([5])' routerLinkActive="active">Button 5</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/management/button6"
+                *ngIf='_AUTH.adminRights([6])' routerLinkActive="active">Button 6</button>
+            </li>
+        </ul>
+        <!-- Admin Menus -->
+        <ul class="navbar-nav my-2 my-lg-0">
+            <li class="nav-item" >
+                <button class="btn btn-outline-danger my-2 my-sm-0" routerLink="/">Back</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/management/userProfile">Settings</button>
+            </li>
+        </ul>       
+    </div>
+</nav>
+<router-outlet></router-outlet>

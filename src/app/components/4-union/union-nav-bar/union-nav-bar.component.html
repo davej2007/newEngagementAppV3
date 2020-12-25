@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">    
+    <a class="navbar-brand" routerLink="/">Union{{ envName }}</a>
+    
+    <button 
+        class="navbar-toggler navbar-toggler-right"
+        type="button" (click)="toggleCollapse()">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div [ngbCollapse]="showMainNav" class="navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" >
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/union/noticeboard" routerLinkActive="active">Notice Board</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/union/usdaw" routerLinkActive="active">Usdaw</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/union/unite" routerLinkActive="active">Unite</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/union/contactus" routerLinkActive="active">Contact An Rep</button>
+            </li>
+        </ul>
+        <!-- Admin Menus -->
+        <ul class="navbar-nav my-2 my-lg-0">
+            <li class="nav-item" >
+                <button class="btn btn-outline-danger my-2 my-sm-0" routerLink="/">Back</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/union/userProfile">Settings</button>
+            </li>
+        </ul>        
+    </div>
+</nav>
+<router-outlet></router-outlet>

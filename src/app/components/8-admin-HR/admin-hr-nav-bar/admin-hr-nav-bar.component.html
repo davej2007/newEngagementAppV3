@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light">    
+    <a class="navbar-brand" routerLink="/">HR{{ envName }}</a>
+    
+    <button 
+        class="navbar-toggler navbar-toggler-right"
+        type="button" (click)="toggleCollapse()">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div [ngbCollapse]="showMainNav" class="navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" >
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/admin/hr/button1" routerLinkActive="active">Button 1</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/admin/hr/button2" routerLinkActive="active">Button 2</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/admin/hr/button3" routerLinkActive="active">Button 3</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/admin/hr/button4" routerLinkActive="active">Button 4</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/admin/hr/button5" routerLinkActive="active">Button 5</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/admin/hr/button6" routerLinkActive="active">Button 6</button>
+            </li>
+        </ul>
+        <!-- Admin Menus -->
+        <ul class="navbar-nav my-2 my-lg-0">
+            <li class="nav-item" >
+                <button class="btn btn-outline-danger my-2 my-sm-0" routerLink="/">Back</button>
+            </li>
+        </ul>        
+    </div>
+</nav>
+<router-outlet></router-outlet>

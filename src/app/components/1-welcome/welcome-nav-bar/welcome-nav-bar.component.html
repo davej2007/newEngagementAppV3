@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">    
+    <a class="navbar-brand" routerLink="/">Our Engagement<br>Application{{ envName }}</a>
+    
+    <button 
+        class="navbar-toggler navbar-toggler-right"
+        type="button" (click)="toggleCollapse()">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div [ngbCollapse]="showMainNav" class="navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" >
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/siteInfo" routerLinkActive="active">Welcome</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/carouselDisplay" routerLinkActive="active">Carousel</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/management"
+                *ngIf='_AUTH.adminRights([1,2,3,4,5,6])' routerLinkActive="active">Management</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/engagement"
+                *ngIf='_AUTH.adminRights([7,8,9,10,11,12])' routerLinkActive="active">Engagement</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/union"
+                *ngIf='_AUTH.adminRights([13,14,15,16,17,18])' routerLinkActive="active">Union</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/healthsafety"
+                *ngIf='_AUTH.adminRights([19,20,21,22,23,24])' routerLinkActive="active">Health & Safety</button>
+            </li>
+        </ul>
+        <!-- Admin Menus -->
+        <ul class="navbar-nav my-2 my-lg-0">
+            <li class="nav-item" >
+                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/admin/supervisor"
+                *ngIf='_AUTH.adminRights([25,26,27,28,29,30])'>Admin : Supervisor</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/admin/manager"
+                *ngIf='_AUTH.adminRights([31,32,33,34,35,36])'>Admin : Manager</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/admin/hr"
+                *ngIf='_AUTH.adminRights([37,38,39,40,41,42])'>Admin : HR</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/admin/superuser"
+                *ngIf='_AUTH.adminRights([43,44,45,46,47,48])'>Admin : SuperUser</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/login">Log In</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/userProfile">Settings</button>
+            </li>
+        </ul>        
+    </div>
+</nav>
+<router-outlet></router-outlet>
