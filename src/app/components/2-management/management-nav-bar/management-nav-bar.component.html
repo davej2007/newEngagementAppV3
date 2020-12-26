@@ -10,19 +10,19 @@
     <div [ngbCollapse]="showMainNav" class="navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item" >
-                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/management/noticeboard"
+                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/management/noticeboard"
                 *ngIf='_AUTH.adminRights([1])' routerLinkActive="active">Notice Board</button>
             </li>
             <li class="nav-item" >
-                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/management/rota"
+                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/management/rota"
                 *ngIf='_AUTH.adminRights([2])' routerLinkActive="active">Rota</button>
             </li>
             <li class="nav-item" >
-                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/management/startTimes"
+                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/management/startTimes"
                 *ngIf='_AUTH.adminRights([3])' routerLinkActive="active">Start Times</button>
             </li>
             <li class="nav-item" >
-                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/management/holidays"
+                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/management/holidays"
                 *ngIf='_AUTH.adminRights([4])' routerLinkActive="active">Holidays</button>
             </li>
             <li class="nav-item" >
@@ -40,7 +40,7 @@
                 <button class="btn btn-outline-danger my-2 my-sm-0" routerLink="/">Back</button>
             </li>
             <li class="nav-item" >
-                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/management/userProfile">Settings</button>
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/management/userProfile">Settings</button>
             </li>
         </ul>       
     </div>

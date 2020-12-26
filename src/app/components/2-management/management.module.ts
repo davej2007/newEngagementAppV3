@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+// Routing
 import { Management_Routing_Module } from './management-routing.module';
-import { ManagementNavBarComponent } from './management-nav-bar/management-nav-bar.component';
+// Services
 import { AUTH_Service } from '../_AUTH_MODULE/auth.service';
-
+// Components
+import { ManagementNavBarComponent } from './management-nav-bar/management-nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -13,10 +14,12 @@ import { AUTH_Service } from '../_AUTH_MODULE/auth.service';
   ],
   imports: [
     CommonModule,
-    Management_Routing_Module,
-    NgbModule
+    NgbModule,
+    Management_Routing_Module
   ],
-  providers:[AUTH_Service],
+  providers:[
+    AUTH_Service
+  ],
   exports:[
     ManagementNavBarComponent
   ]

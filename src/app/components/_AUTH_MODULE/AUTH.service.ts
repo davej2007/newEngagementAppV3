@@ -8,7 +8,7 @@ export class AUTH_Service {
   public employeeToken : String;
   public siteToken : String;
   public employee : IEMPLOYEE; 
-  public admin : String = '011110011111111';
+  public admin : String = '0111110111110111110111110111110111110111110111110';
   public expTime : number;
   public currentSite : ISITE;
   public doNotDisturb : Boolean = false;

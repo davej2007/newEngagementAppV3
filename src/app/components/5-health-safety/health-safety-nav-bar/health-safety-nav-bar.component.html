@@ -10,16 +10,28 @@
     <div [ngbCollapse]="showMainNav" class="navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item" >
-                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/healthsafety/noticeboard" routerLinkActive="active">Notice Board</button>
+                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/healthsafety/noticeboard"
+                *ngIf='_AUTH.adminRights([19])' routerLinkActive="active">Notice Board</button>
             </li>
             <li class="nav-item" >
-                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/healthsafety/riskassesments" routerLinkActive="active">Store Risk Assessments</button>
+                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/healthsafety/riskassesments"
+                *ngIf='_AUTH.adminRights([20])' routerLinkActive="active">Store Risk Assessments</button>
             </li>
             <li class="nav-item" >
-                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/healthsafety/safesystems" routerLinkActive="active">Safe Systems Of Works</button>
+                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/healthsafety/safesystems"
+                *ngIf='_AUTH.adminRights([21])' routerLinkActive="active">Safe Systems Of Works</button>
             </li>
             <li class="nav-item" >
-                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/healthsafety/contactus" routerLinkActive="active">Report A Problem</button>
+                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/healthsafety/contactus"
+                *ngIf='_AUTH.adminRights([22])' routerLinkActive="active">Report A Problem</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/healthsafety/button5"
+                *ngIf='_AUTH.adminRights([23])' routerLinkActive="active">Button 5</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/healthsafety/button6"
+                *ngIf='_AUTH.adminRights([24])' routerLinkActive="active">Button 6</button>
             </li>
         </ul>
         <!-- Admin Menus -->
@@ -28,7 +40,7 @@
                 <button class="btn btn-outline-danger my-2 my-sm-0" routerLink="/">Back</button>
             </li>
             <li class="nav-item" >
-                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/healthsafety/userProfile">Settings</button>
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/healthsafety/userProfile">Settings</button>
             </li>
         </ul>        
     </div>

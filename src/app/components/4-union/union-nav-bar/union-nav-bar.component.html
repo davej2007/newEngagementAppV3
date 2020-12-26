@@ -10,16 +10,28 @@
     <div [ngbCollapse]="showMainNav" class="navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item" >
-                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/union/noticeboard" routerLinkActive="active">Notice Board</button>
+                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/union/noticeboard"
+                *ngIf='_AUTH.adminRights([13])' routerLinkActive="active">Notice Board</button>
             </li>
             <li class="nav-item" >
-                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/union/usdaw" routerLinkActive="active">Usdaw</button>
+                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/union/usdaw"
+                *ngIf='_AUTH.adminRights([14])' routerLinkActive="active">Usdaw</button>
             </li>
             <li class="nav-item" >
-                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/union/unite" routerLinkActive="active">Unite</button>
+                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/union/unite"
+                *ngIf='_AUTH.adminRights([15])' routerLinkActive="active">Unite</button>
             </li>
             <li class="nav-item" >
-                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/union/contactus" routerLinkActive="active">Contact An Rep</button>
+                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/union/contactus"
+                *ngIf='_AUTH.adminRights([16])' routerLinkActive="active">Contact An Rep</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/union/button5"
+                *ngIf='_AUTH.adminRights([17])' routerLinkActive="active">Button 5</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/union/button6"
+                *ngIf='_AUTH.adminRights([18])' routerLinkActive="active">Button 6</button>
             </li>
         </ul>
         <!-- Admin Menus -->
@@ -28,7 +40,7 @@
                 <button class="btn btn-outline-danger my-2 my-sm-0" routerLink="/">Back</button>
             </li>
             <li class="nav-item" >
-                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/union/userProfile">Settings</button>
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/union/userProfile">Settings</button>
             </li>
         </ul>        
     </div>

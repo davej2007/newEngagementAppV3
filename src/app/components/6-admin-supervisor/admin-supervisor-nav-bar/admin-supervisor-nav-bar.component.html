@@ -10,22 +10,28 @@
     <div [ngbCollapse]="showMainNav" class="navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item" >
-                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/admin/supervisor/button1" routerLinkActive="active">Button 1</button>
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/admin/supervisor/button1"
+                *ngIf='_AUTH.adminRights([25])' routerLinkActive="active">Button 1</button>
             </li>
             <li class="nav-item" >
-                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/admin/supervisor/button2" routerLinkActive="active">Button 2</button>
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/admin/supervisor/button2"
+                *ngIf='_AUTH.adminRights([26])' routerLinkActive="active">Button 2</button>
             </li>
             <li class="nav-item" >
-                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/admin/supervisor/button3" routerLinkActive="active">Button 3</button>
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/admin/supervisor/button3"
+                *ngIf='_AUTH.adminRights([27])' routerLinkActive="active">Button 3</button>
             </li>
             <li class="nav-item" >
-                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/admin/supervisor/button4" routerLinkActive="active">Button 4</button>
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/admin/supervisor/button4"
+                *ngIf='_AUTH.adminRights([28])' routerLinkActive="active">Button 4</button>
             </li>
             <li class="nav-item" >
-                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/admin/supervisor/button5" routerLinkActive="active">Button 5</button>
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/admin/supervisor/button5"
+                *ngIf='_AUTH.adminRights([29])' routerLinkActive="active">Button 5</button>
             </li>
             <li class="nav-item" >
-                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/admin/supervisor/button6" routerLinkActive="active">Button 6</button>
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/admin/supervisor/button6"
+                *ngIf='_AUTH.adminRights([30])' routerLinkActive="active">Button 6</button>
             </li>
         </ul>
         <!-- Admin Menus -->

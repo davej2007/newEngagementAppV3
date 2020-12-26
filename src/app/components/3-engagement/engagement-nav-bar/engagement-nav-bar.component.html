@@ -10,16 +10,28 @@
     <div [ngbCollapse]="showMainNav" class="navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item" >
-                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/engagement/noticeboard" routerLinkActive="active">Notice Board</button>
+                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/engagement/noticeboard"
+                *ngIf='_AUTH.adminRights([7])' routerLinkActive="active">Notice Board</button>
             </li>
             <li class="nav-item" >
-                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/engagement/eventCalender" routerLinkActive="active">Event Calender</button>
+                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/engagement/eventCalender"
+                *ngIf='_AUTH.adminRights([8])' routerLinkActive="active">Event Calender</button>
             </li>
             <li class="nav-item" >
-                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/engagement/others" routerLinkActive="active">others</button>
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/engagement/button3"
+                *ngIf='_AUTH.adminRights([9])' routerLinkActive="active">Button 3</button>
             </li>
             <li class="nav-item" >
-                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/engagement/others" routerLinkActive="active">more Others</button>
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/engagement/button4"
+                *ngIf='_AUTH.adminRights([10])' routerLinkActive="active">Button 4</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/engagement/button5"
+                *ngIf='_AUTH.adminRights([11])' routerLinkActive="active">Button 5</button>
+            </li>
+            <li class="nav-item" >
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/engagement/button6"
+                *ngIf='_AUTH.adminRights([12])' routerLinkActive="active">Button 6</button>
             </li>
         </ul>
         <!-- Admin Menus -->
@@ -28,7 +40,7 @@
                 <button class="btn btn-outline-danger my-2 my-sm-0" routerLink="/">Back</button>
             </li>
             <li class="nav-item" >
-                <button class="btn btn-outline-success my-2 my-sm-0" routerLink="/engagement/userProfile">Settings</button>
+                <button class="btn btn-outline-primary my-2 my-sm-0" routerLink="/engagement/userProfile">Settings</button>
             </li>
         </ul>        
     </div>

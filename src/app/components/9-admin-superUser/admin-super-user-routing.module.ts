@@ -24,4 +24,4 @@ const routes: Routes = [  // Super User Routes
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AdminSuperUserRoutingModule { }
+export class Admin_Super_User_Routing_Module { }

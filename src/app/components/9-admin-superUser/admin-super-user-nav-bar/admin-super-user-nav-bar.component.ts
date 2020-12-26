@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { AUTH_Service } from '../../_AUTH_MODULE/auth.service';
 
 @Component({
   selector: 'admin-super-user-nav-bar',
@@ -8,7 +9,9 @@ import { environment } from 'src/environments/environment';
 })
 export class AdminSuperUserNavBarComponent {
 
-  constructor() { }
+  constructor(
+    public _AUTH:AUTH_Service
+  ) { }
 
   // Variables
   public envName = environment.name;

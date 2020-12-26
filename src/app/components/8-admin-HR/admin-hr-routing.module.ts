@@ -4,7 +4,7 @@ import { PageNotFoundComponent } from '../0-common/page-not-found/page-not-found
 import { PageUnderDevelopmentComponent } from '../0-common/page-under-development/page-under-development.component';
 import { AdminHRNavBarComponent } from './admin-hr-nav-bar/admin-hr-nav-bar.component';
 
-const routes: Routes = [  // Health & Safety Root Routes
+const routes: Routes = [  // Admin HR Root Routes
   { path   : '',        component : AdminHRNavBarComponent,   children: [
     { path : 'button1', component : PageUnderDevelopmentComponent},
     { path : 'button2', component : PageUnderDevelopmentComponent},
@@ -17,11 +17,11 @@ const routes: Routes = [  // Health & Safety Root Routes
   }
 ];
 // { path: 'startTimes', component: StartTimesComponent },
-    // {path:'holiday',                  component:HolidayAvailabilityComponent},
-    // {path:'button5',                  component:PageNotFoundComponent,        canActivate:[AuthGuard], data: {role: [5]} },
+// {path:'holiday',                  component:HolidayAvailabilityComponent},
+// {path:'button5',component:PageNotFoundComponent,canActivate:[AuthGuard], data: {role: [5]} },
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AdminHRRoutingModule { }
+export class Admin_HR_Routing_Module { }
