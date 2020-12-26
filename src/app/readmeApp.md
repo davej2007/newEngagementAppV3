@@ -29,6 +29,8 @@ imports: [NgbModule, ...],
 
 ng g m components/0-default/default --flat --routing
 
+ng g g components/custom/guard/AUTH --flat --skip-tests
+
 1. ng g c components/0-default/default-page-not-found --skipTests=true --prefix 
 1. ng g c components/0-default/default-nav-bar --skipTests=true --prefix 
 2. ng g s components/service/auth --skipTests=true 

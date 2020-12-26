@@ -5,6 +5,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HealthSafety_Routing_Module } from './health-safety-routing.module';
 // Services
 import { AUTH_Service } from '../_AUTH_MODULE/auth.service';
+import { AUTH_Guard } from '../_custom/guard/auth.guard';
 // Components
 import { HealthSafetyNavBarComponent } from './health-safety-nav-bar/health-safety-nav-bar.component';
 
@@ -18,7 +19,8 @@ import { HealthSafetyNavBarComponent } from './health-safety-nav-bar/health-safe
     NgbModule
   ],
   providers:[
-    AUTH_Service
+    AUTH_Service,
+    AUTH_Guard
   ],
   exports:[
     HealthSafetyNavBarComponent
