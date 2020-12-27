@@ -1,0 +1,55 @@
+      <form>
+
+        <div class="form-group row"> <!-- password   -->
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="emPassword">Password : </span>
+            </div>
+            <input aria-describedby="emPassword"
+            [class.is-invalid]='password.invalid && password.touched'
+            [class.is-valid]='password.valid && password.touched'
+            formControlName='password' type="text" class="form-control" id="password" placeholder="Password">
+            <div class="input-group-append">
+              <button class="btn btn-outline-success" type="button" [disabled]='generate' (click)='generatePassword();'>Generate</button>
+            </div>
+          </div>
+          <ul *ngIf='password.invalid && password.touched'> <!-- error messages -->
+            <li *ngIf='password.errors?.required' class='text-danger'>A Password Is Required</li>
+            <li *ngIf='password.errors?.minlength || password.errors?.maxlength' class='text-danger'>Password Should Between 8 and 30 Characters Long</li>
+            <li *ngIf='password.errors?.isError' class='text-danger'>Invalid Password</li>
+          </ul>
+        </div>
+
+        <div formArrayName="addressLine"> <!-- contactAddress  -->
+          <div *ngFor="let address of addressLine.controls; let i=index">
+            <!-- The repeated Address template -->
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="address">Address Line {{ i+1 }} : </span>
+              </div>
+              <input aria-describedby="address"
+              [formControlName]="i" type="text" class="form-control" id="address"
+                placeholder="Address Line">
+                <!-- Add Address Line Button -->
+                <div class="input-group-append" *ngIf='addressLine.controls.length == (i+1)'>
+                  <button class="btn btn-outline-primary" type="button" (click)="addAddressLine()">Add Line</button>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row" *ngIf='addressLine.value.length>1'> <!-- Post Code  -->
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="postCode">Post Code :</span>
+            </div>
+            <input aria-describedby="postCode"
+              [class.is-invalid]='(postCode.invalid) && postCode.touched'
+              [class.is-valid]='(postCode.valid) && postCode.touched'
+              formControlName='postCode' type="text" class="form-control" id="postCode"
+              placeholder="Enter Your Post Code">
+            </div>
+          <ul *ngIf='(postCode.invalid) && postCode.touched'> <!-- error messages -->
+            <li *ngIf='postCode.errors?.required' class='text-danger'>Post Code Is Required</li>
+          </ul>
+        </div>
+      </form>
