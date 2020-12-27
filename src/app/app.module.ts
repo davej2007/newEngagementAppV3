@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +25,9 @@ import { AUTH_Module } from './components/_AUTH_MODULE/AUTH.module';
     BrowserModule,
     AppRoutingModule,
     AUTH_Module, Common_Module,
+    HttpClientModule, // HTTP client
+    FormsModule, ReactiveFormsModule, // Forms
+    // FileUploadModule,  // ng file upload
     Welcome_Module, Management_Module, Engagement_Module,
     Union_Module, Health_Safety_Module,
     Admin_Supervisor_Module, Admin_Manager_Module,
