@@ -14,6 +14,7 @@ import { Admin_Manager_Module } from './components/7-admin-manager/admin-manager
 import { Admin_HR_Module } from './components/8-admin-HR/admin-hr.module';
 import { Admin_SuperUser_Module } from './components/9-admin-superUser/admin-super-user.module';
 import { AUTH_Module } from './components/_AUTH_MODULE/AUTH.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AUTH_Module } from './components/_AUTH_MODULE/AUTH.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,ReactiveFormsModule,
     AUTH_Module, Common_Module,
     Welcome_Module, Management_Module, Engagement_Module,
     Union_Module, Health_Safety_Module,
