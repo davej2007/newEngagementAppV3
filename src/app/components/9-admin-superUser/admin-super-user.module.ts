@@ -11,6 +11,7 @@ import { AdminSuperUserNavBarComponent } from './admin-super-user-nav-bar/admin-
 import { CreateNewSiteComponent } from './create-new-site/create-new-site.component';
 import { CreateNewEmployeeComponent } from './create-new-employee/create-new-employee.component';
 import { CreateNewRotaComponent } from './create-new-rota/create-new-rota.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import { CreateNewRotaComponent } from './create-new-rota/create-new-rota.compon
   imports: [
     CommonModule,
     NgbModule,
-    Admin_Super_User_Routing_Module
+    Admin_Super_User_Routing_Module,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers:[
     AUTH_Service,

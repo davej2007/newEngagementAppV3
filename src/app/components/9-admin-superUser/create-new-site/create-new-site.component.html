@@ -28,121 +28,100 @@
     <div class='mainform' *ngIf="selectedPage === 'A0'"> <!-- Site Information -->
       <h4>Basic Info Form</h4>
       <br>
-      <form  [formGroup]='newSiteForm'>
-        <div class="form-row"><!-- Site Ref Code & Site Name -->
-          <div class="form-group col-md-3">
-            <label for="site">Site Ref Code : </label>
-            <input type="text" class="form-control" aria-describedby="site"
-              [class.is-invalid]='(site.invalid) && site.touched'
-              [class.is-valid]='(site.valid) && site.touched'
-              formControlName='site' id="site"
-              placeholder="New Site Reference Code">
-              <ul *ngIf='(site.invalid) && site.touched '> <!-- error messages -->
-                <li *ngIf='site.errors?.required' class='text-danger'>Site Reference Code Is Required</li>
-                <li *ngIf='site.errors?.isError' class='text-danger'>Site Reference Code Is 7 Characters Long</li>
-              </ul>
+      <form [formGroup]="BasicSiteInfo">
+        <div formGroupName="SiteDetails">
+          <h3>Site Details</h3>
+          <div class="form-row"><!-- Site Ref Code & Site Name -->
+            <div class="form-group col-md-3">
+              <label for="Site_Reference_Code">Site Ref Code : </label>
+              <input type="text" class="form-control" id="Site_Reference_Code" aria-describedby="Site_Reference_Code"
+                [class.is-invalid]='(SD_Ref.invalid) && SD_Ref.touched' [class.is-valid]='(SD_Ref.valid) && SD_Ref.touched'
+                formControlName="siteReference" placeholder="New Site Reference Code">
+            </div>
+            <div class="form-group col-md-9">
+              <label for="Site_Contract_Name">Site Contract Name : </label>
+              <input type="text" class="form-control" aria-describedby="Site_Contract_Name" id="Site_Contract_Name"
+                [class.is-invalid]='(SD_Name.invalid) && SD_Name.touched' [class.is-valid]='(SD_Name.valid) && SD_Name.touched'
+                formControlName='siteContractName'  placeholder="Enter Your Site Contract Name">
+            </div>
           </div>
-          <div class="form-group col-md-9">
-            <label for="siteName">Site Name : </label>
-            <input type="text" class="form-control" aria-describedby="siteName"
-              [class.is-invalid]='siteName.invalid && siteName.touched '
-              [class.is-valid]='siteName.valid && siteName.touched'
-              formControlName='siteName' id="siteName" placeholder="Enter Your Site Name">
-              <ul *ngIf='siteName.invalid && siteName.touched'> <!-- error messages -->
-                <li *ngIf='siteName.errors?.required' class='text-danger'>Site Name Is Required</li>
-                <li *ngIf='siteName.errors?.minlength || siteName.errors?.maxlength' class='text-danger'>Site Name Should Be Between 5 and 50 Letters Long</li>
-                <li *ngIf='siteName.errors?.isError' class='text-danger'>Site Name Should Only Be Letters</li>
-              </ul>
-          </div>
-        </div>
-        
-        <div class="form-row"><!-- Site Open On & Week Start Day -->
-          <div class="form-group col-md-6">
-            <label for="siteOpenOn">Site Opened On : </label>
-            <input type="date" class="form-control" aria-describedby="siteOpenOn"
-              [class.is-invalid]='(siteOpenOn.invalid) && siteOpenOn.touched'
-              [class.is-valid]='(siteOpenOn.valid) && siteOpenOn.touched'
-              formControlName='siteOpenOn' id="siteOpenOn">
-              <ul *ngIf='(siteOpenOn.invalid) && siteOpenOn.touched '> <!-- error messages -->
-                <li *ngIf='siteOpenOn.errors?.required' class='text-danger'>Date The Site Opened Is Required</li>
-              </ul>
-          </div>
-          <div class="form-group col-md-6">
-            <label for="weekStartDay">Week Start Day : </label>
-            <select id="weekStartDay" class="form-control" formControlName='weekStartDay'>
-              <option selected>Choose...</option>
-              <option *ngFor='let r of daysOfWeek; let i=index;' [value]=i>{{ r }}</option>
-            </select>
-            <ul *ngIf='weekStartDay.invalid && weekStartDay.touched'> <!-- error messages -->
-              <li *ngIf='weekStartDay.errors?.required' class='text-danger'>A Start Of Week Is Required</li>
-            </ul>
-          </div>
-        </div>
-        <div class="form-row"><!-- Site Contact Name & Site Contact Title -->
-          <div class="form-group col-md-6">
-            <label for="contactName">Site Contact Name : </label>
-            <input type="text" class="form-control" aria-describedby="contactName"
-              [class.is-invalid]='(contactName.invalid) && contactName.touched'
-              [class.is-valid]='(contactName.valid) && contactName.touched'
-              formControlName='contactName' id="contactName"
-              placeholder="Enter Your Site's Contact Name">
-              <ul *ngIf='(contactName.invalid) && contactName.touched '> <!-- error messages -->
-                <li *ngIf='contactName.errors?.required' class='text-danger'>Site Contact Name Is Required</li>
-                <li *ngIf='contactName.errors?.isError' class='text-danger'>Site Contact Name Should Be Between 5 and 50 Letters Long</li>
-              </ul>
-          </div>
-          <div class="form-group col-md-6">
-            <label for="contactTitle">Contact Title : </label>
-            <input type="text" class="form-control" aria-describedby="contactTitle"
-              [class.is-invalid]='contactTitle.invalid && contactTitle.touched '
-              [class.is-valid]='contactTitle.valid && contactTitle.touched'
-              formControlName='contactTitle' id="contactTitle" placeholder="Enter Your Contact Title">
-              <ul *ngIf='(contactTitle.invalid) && contactTitle.touched'> <!-- error messages -->
-                <li *ngIf='contactTitle.errors?.required' class='text-danger'>Contact Title Is Required</li>
-              </ul>
-          </div>
-        </div>
-        <div class="form-row"><!-- Site Contact Tel No & Site Contact Email -->
-          <div class="form-group col-md-6">
-            <label for="contactNumber">Contact Tel No : </label>
-            <input type="text" class="form-control" aria-describedby="contactNumber"
-              [class.is-invalid]='(contactNumber.invalid) && contactNumber.touched'
-              [class.is-valid]='(contactNumber.valid) && contactNumber.touched'
-              formControlName='contactNumber' id="contactNumber"
-              placeholder="Enter Your Contact Telephone Number">
-              <ul *ngIf='(contactNumber.invalid) && contactNumber.touched'> <!-- error messages -->
-                <li *ngIf='contactNumber.errors?.required' class='text-danger'>Contact Telephone Number Is Required</li>
-              </ul>
-          </div>
-          <div class="form-group col-md-6">
-            <label for="contactEmail">Contact E Mail : </label>
-            <input type="text" class="form-control" aria-describedby="contactEmail"
-              [class.is-invalid]='contactEmail.invalid && contactEmail.touched '
-              [class.is-valid]='contactEmail.valid && contactEmail.touched'
-              formControlName='contactEmail' id="contactEmail" placeholder="Enter Your Contact Email">
-              <ul *ngIf='(contactEmail.invalid) && contactEmail.touched'> <!-- error messages -->
-                <li *ngIf='contactEmail.errors?.required' class='text-danger'>Contact Email Is Required</li>
-                <li *ngIf='contactEmail.errors?.email' class='text-danger'>Valid EMail Required</li>
-              </ul>
-          </div>
-        </div>
-        <div class="form-group"><!-- Site Address -->
-          <label for="siteAddress">Site Address : </label>
-          <div formArrayName="addressLine"> <!-- contactAddress  -->
-            <div *ngFor="let address of addressLine.controls; let i=index">
-              <div class="input-group">
-                <input aria-describedby="siteAddress"
-                  [formControlName]="i" type="text" class="form-control" id="siteAddress"
-                  placeholder="Address Line">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-primary input-group-text" type="button" (click)="addAddressLine()">Add Line</button>
-                </div>
-              </div>
+          <div class="form-row"><!-- Site Open On & Week Start Day -->
+            <div class="form-group col-md-6">
+              <label for="Site_Start_Date">Site Opened On : </label>
+              <input type="date" class="form-control" aria-describedby="Site_Start_Date" id="Site_Start_Date"
+                [class.is-invalid]='(SD_Date.invalid) && SD_Date.touched' [class.is-valid]='(SD_Date.valid) && SD_Date.touched'
+                formControlName='siteStartDate'>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="Site_Start_Week">Week Start Day : </label>
+              <select class="form-control" id="Site_Start_Week" 
+                [class.is-invalid]='(SD_Day.invalid) && SD_Day.touched' [class.is-valid]='(SD_Day.valid) && SD_Day.touched'
+                formControlName='siteWeekStartDay'>
+                <option *ngFor='let r of daysOfWeek; let i=index;' [value]=i>{{ r }}</option>
+              </select>
             </div>
           </div>
         </div>
+        <div formGroupName="ContactDetails">
+          <h3>Contact Details</h3>
+          <div class="form-row"><!-- Site Contact Name & Site Contact Title -->
+            <div class="form-group col-md-6">
+              <label for="Site_Contact_Name">Site Contact Name : </label>
+              <input type="text" class="form-control" id="Site_Contact_Name" aria-describedby="Site_Contact_Name"
+                [class.is-invalid]='(CD_Name.invalid) && CD_Name.touched' [class.is-valid]='(CD_Name.valid) && CD_Name.touched'
+                formControlName="contactName" placeholder="Enter Your Site Contact Name">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="Site_Contact_Title">Site Contact Title : </label>
+              <input type="text" class="form-control" aria-describedby="Site_Contract_Name" id="Site_Contract_Name"
+              [class.is-invalid]='(CD_Title.invalid) && CD_Title.touched' [class.is-valid]='(CD_Title.valid) && CD_Title.touched'
+              formControlName='contactTitle'  placeholder="Enter Your Site Contact Title">
+            </div>
+          </div>
+          <div class="form-row"><!-- Site Contact Telephone & Site Contact Email -->
+            <div class="form-group col-md-6">
+              <label for="Site_Contact_Phone">Site Contact Phone Number : </label>
+              <input type="text" class="form-control" aria-describedby="Site_Contact_Phone" id="Site_Contact_Phone"
+                [class.is-invalid]='(CD_Tel.invalid) && CD_Tel.touched' [class.is-valid]='(CD_Tel.valid) && CD_Tel.touched'
+                formControlName='telNumber'  placeholder="Enter Your Site Contact Phone Number">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="Site_Contact_Email">Site Contact Email Address : </label>
+              <input type="text" class="form-control" id="Site_Contact_Email" aria-describedby="Site_Contact_Email"                
+              [class.is-invalid]='(CD_Email.invalid) && CD_Email.touched' [class.is-valid]='(CD_Email.valid) && CD_Email.touched'
+              formControlName="contactEmail" placeholder="Enter Your Site Contact Email Address">
+            </div>
+          </div>
+
+        </div>
+
+        <div formGroupName="address">
+          <h3>Address</h3>
+        
+          <label>
+            Street:
+            <input type="text" formControlName="street">
+          </label>
+        
+          <label>
+            City:
+            <input type="text" formControlName="city">
+          </label>
+          
+          <label>
+            State:
+            <input type="text" formControlName="state">
+          </label>
+        
+          <label>
+            Zip Code:
+            <input type="text" formControlName="zip">
+          </label>
+        </div>
       </form>
 
+      values : {{ BasicSiteInfo.value | json }}
+     
 
 
 

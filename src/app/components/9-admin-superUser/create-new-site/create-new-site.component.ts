@@ -12,18 +12,6 @@ export class CreateNewSiteComponent implements OnInit {
   constructor(
     private fb:FormBuilder
   ) { }
-    // form Get
-    get site()          { return this.newSiteForm.get('site'); }
-    get siteName()          { return this.newSiteForm.get('siteName');   }
-    get weekStartDay()  { return this.newSiteForm.get('weekStartDay');  }
-    get password()      { return this.newSiteForm.get('password');  }
-    get siteOpenOn()    { return this.newSiteForm.get('siteOpenOn');  }  
-    get contactName()   { return this.newSiteForm.get('contactName');}
-    get contactTitle()  { return this.newSiteForm.get('contactTitle');   }
-    get contactEmail()  { return this.newSiteForm.get('contactEmail');   }
-    get contactNumber() { return this.newSiteForm.get('contactNumber');  }
-    get addressLine()   { return this.newSiteForm.get('addressLine') as FormArray; }
-    get postCode()      { return this.newSiteForm.get('postCode');  }
   // Variable Definitions
   selectedPage  : String = 'A0';
   daysOfWeek    : any = daysOfWeek(0);
@@ -32,28 +20,38 @@ export class CreateNewSiteComponent implements OnInit {
   successMsg    : String = null;
   errorMsg      : String = null;
 
-  // Reactive Form Definitions
-  newSiteForm = this.fb.group({
-    site          : ['', [Validators.required]],
-    siteName          : ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
-    weekStartDay  : ['', [Validators.required]],
-    password      : ['', [Validators.required, Validators.minLength(8), Validators.maxLength(30)]],
-    siteOpenOn    : ['', [Validators.required]],
-    contactName   : ['', [Validators.required]],
-    contactTitle  : ['', [Validators.required]],
-    contactNumber : ['', [Validators.required]],
-    contactEmail  : ['', [Validators.required, Validators.email]],
-    addressLine   : this.fb.array([ this.fb.control('')]),
-    postCode      : ['', [Validators.required]]
-  });
+  BasicSiteInfo = this.fb.group({
+    SiteDetails: this.fb.group({
+      siteReference: ['',[Validators.required]],
+      siteContractName: ['',[Validators.required]],
+      siteStartDate: ['',[Validators.required]],
+      siteWeekStartDay: ['',[Validators.required]]
+    }),
+    ContactDetails: this.fb.group({
+      contactName   : ['',[Validators.required]],
+      contactTitle  : ['',[Validators.required]],
+      telNumber : ['',[Validators.required]],
+      contactEmail  : ['',[Validators.required]],
+    }),
+    address: this.fb.group({
+      street: [''],
+      city: [''],
+      state: [''],
+      zip: ['']
+    })
+  })
+// Basic Info Form Gets
+get SD_Ref()          { return this.BasicSiteInfo.get('SiteDetails.siteReference'); } 
+get SD_Name()         { return this.BasicSiteInfo.get('SiteDetails.siteContractName'); } 
+get SD_Date()         { return this.BasicSiteInfo.get('SiteDetails.siteStartDate'); } 
+get SD_Day()          { return this.BasicSiteInfo.get('SiteDetails.siteWeekStartDay'); } 
+get CD_Name()          { return this.BasicSiteInfo.get('ContactDetails.contactName'); } 
+get CD_Title()          { return this.BasicSiteInfo.get('ContactDetails.contactTitle'); } 
+get CD_Tel()          { return this.BasicSiteInfo.get('ContactDetails.telNumber'); } 
+get CD_Email()          { return this.BasicSiteInfo.get('ContactDetails.contactEmail'); } 
+
   ngOnInit(): void {
     console.log(this.daysOfWeek)
   }
-  addAddressLine() {
-    console.log('add address line', this.addressLine.value)
-    if(this.addressLine.value[this.addressLine.value.length-1]!=''){
-      console.log(this.addressLine)
-      this.addressLine.push(this.fb.control(''));
-    }
-  } 
+  
 }
