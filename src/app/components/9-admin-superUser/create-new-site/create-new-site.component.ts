@@ -33,12 +33,13 @@ export class CreateNewSiteComponent implements OnInit {
       telNumber : ['',[Validators.required]],
       contactEmail  : ['',[Validators.required]],
     }),
-    address: this.fb.group({
-      street: [''],
-      city: [''],
-      state: [''],
-      zip: ['']
-    })
+    SiteAddress: this.fb.group({
+      addressLine: this.fb.array([
+        this.fb.control('')
+      ]),
+      postCode : ['']
+    }),
+    
   })
 // Basic Info Form Gets
 get SD_Ref()          { return this.BasicSiteInfo.get('SiteDetails.siteReference'); } 
@@ -50,6 +51,12 @@ get CD_Title()          { return this.BasicSiteInfo.get('ContactDetails.contactT
 get CD_Tel()          { return this.BasicSiteInfo.get('ContactDetails.telNumber'); } 
 get CD_Email()          { return this.BasicSiteInfo.get('ContactDetails.contactEmail'); } 
 
+get addressLine() {
+  return this.BasicSiteInfo.get('SiteAddress.addressLine') as FormArray;
+}
+add_Line() {
+  this.addressLine.push(this.fb.control(''));
+}
   ngOnInit(): void {
     console.log(this.daysOfWeek)
   }

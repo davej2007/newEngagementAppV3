@@ -92,31 +92,25 @@
               formControlName="contactEmail" placeholder="Enter Your Site Contact Email Address">
             </div>
           </div>
-
         </div>
+        <div formGroupName="SiteAddress">
+          <h3>Site Address</h3><button (click)="add_Line()">Add line</button> 
+          <div formArrayName="addressLine">
+            <div class="form-group col-md-9">
+              <label for="Site_Address">Site Address : </label>
+              <div *ngFor="let line of addressLine.controls; let i=index">
 
-        <div formGroupName="address">
-          <h3>Address</h3>
-        
-          <label>
-            Street:
-            <input type="text" formControlName="street">
-          </label>
-        
-          <label>
-            City:
-            <input type="text" formControlName="city">
-          </label>
-          
-          <label>
-            State:
-            <input type="text" formControlName="state">
-          </label>
-        
-          <label>
-            Zip Code:
-            <input type="text" formControlName="zip">
-          </label>
+                  <input type="text" class="form-control" id="Site_Address" aria-describedby="Site_Address"                
+                  [formControlName]="i" placeholder="Next Line">
+
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="Site_Address_PostCode">Site Address Post Code: </label>
+            <input type="text" class="form-control" id="Site_Address_PostCode" aria-describedby="Site_Address_PostCode"                
+            formControlName="postCode" placeholder="Enter Your Site Post Code">
+          </div>
         </div>
       </form>
 

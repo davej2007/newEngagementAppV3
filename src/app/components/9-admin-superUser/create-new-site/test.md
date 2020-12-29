@@ -165,52 +165,9 @@ addAddressLine() {
   addAlias() {
     this.addressLine.push(this.fb.control(''));
   }
-get site()          { return this.newSiteForm.get('site.ref'); }
-    get siteName()      { return this.newSiteForm.get('site.name');   }
-    get weekStartDay()  { return this.newSiteForm.get('site.weekStartDay');  }
-    get siteOpenOn()    { return this.newSiteForm.get('site.siteOpenOn');  }  
-    get contactName()   { return this.newSiteForm.get('contact.name');}
-    get contactTitle()  { return this.newSiteForm.get('contact.title');   }
-    get contactEmail()  { return this.newSiteForm.get('contact.Email');   }
-    get contactNumber() { return this.newSiteForm.get('contact.telNumber');  }
 
     get addressLine() {
       return this.newSiteForm.get('address.line') as FormArray;
     }
     get postCode()      { return this.newSiteForm.get('address.postCode');  }
 get password()      { return this.newSiteForm.get('password');  }
-  
-
-  Template 
-
-        <form>
-        <div class="form-row"><!-- Site Ref Code & Site Name -->
-          <div class="form-group col-md-3">
-            <label for="site">Site Ref Code : </label>
-            <input type="text" class="form-control" aria-describedby="site" name='site' id="site"
-              [(ngModel)]='Site.reference'
-              placeholder="New Site Reference Code">
-          </div>
-          <div class="form-group col-md-9">
-            <label for="siteName">Site Name : </label>
-            <input type="text" class="form-control" aria-describedby="siteName" name='siteName' id="siteName"
-            [(ngModel)]='Site.name' placeholder="Enter Your Site Name">              
-          </div>
-        </div>
-
-
-
-
-
-          Favorite Color: <input type="text" name='favoriteColor' [(ngModel)]="favoriteColor">
-      
-
-      </form>
-      
-      <hr>
-      
-      
-      <p>
-        Form Value: {{ favoriteColor }}
-        Site : {{ Site | json }}
-      </p>
