@@ -34,3 +34,15 @@
     font-size: 125%;
     border-color:blue;
 }
+
+.mainform {
+    margin-top: 25px;
+    border: 2px black solid;
+    padding: 15px;
+}
+.mainform h4 {
+    background-color: slategray;
+    padding: 10px;
+    color :red;
+    text-align: center;
+}

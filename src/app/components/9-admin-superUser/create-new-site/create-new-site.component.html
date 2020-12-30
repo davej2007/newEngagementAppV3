@@ -94,38 +94,78 @@
           </div>
         </div>
         <div formGroupName="SiteAddress">
-          <h3>Site Address</h3><button (click)="add_Line()">Add line</button> 
+          <h3>Site Address</h3> 
           <div formArrayName="addressLine">
             <div class="form-group col-md-9">
               <label for="Site_Address">Site Address : </label>
-              <div *ngFor="let line of addressLine.controls; let i=index">
-
-                  <input type="text" class="form-control" id="Site_Address" aria-describedby="Site_Address"                
-                  [formControlName]="i" placeholder="Next Line">
-
+              <div class="input-group mb-3" *ngFor="let line of addressLine.controls; let i=index">
+                <input type="text" class="form-control" aria-label="Recipient's username"
+                aria-describedby="basic-addon2" [formControlName]="i" placeholder="Next Line">
+                <div class="input-group-append" *ngIf='addressLine.controls.length == (i+1)'>
+                  <button class="btn btn-outline-secondary" type="button" (click)="add_Line()">Add Line</button>
+                </div>
               </div>
             </div>
           </div>
           <div class="form-group col-md-6">
             <label for="Site_Address_PostCode">Site Address Post Code: </label>
-            <input type="text" class="form-control" id="Site_Address_PostCode" aria-describedby="Site_Address_PostCode"                
+            <input type="text" class="form-control" id="Site_Address_PostCode" aria-describedby="Site_Address_PostCode"
+            [class.is-invalid]='(postcode.invalid) && postcode.touched' [class.is-valid]='(postcode.valid) && postcode.touched'               
             formControlName="postCode" placeholder="Enter Your Site Post Code">
           </div>
         </div>
       </form>
+    </div> <!-- Site Information End -->
+    <div class='mainform' *ngIf="selectedPage === 'A1'"> <!-- Job Titles -->
+      <h4>Job Titles</h4>
+      <p>This Is The Only Time You Will Be Able To Delete UnWanted Jobs</p>
+      <table class="table" *ngFor="let job of jobTitles">
+        <thead class="thead-dark">
+          <tr>
+            <th class='jobTitleTable'><h5>{{ job.job }}</h5></th>
+            <th><button type="button" class="btn btn-danger" [disabled]='processing' (click)='removeAllJobs(job.job);'>Remove</button></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let jobTitle of job.title; let i = index">
+            <td class='jobTitleTable'>{{ jobTitle }}</td>
+            <td><button type="button" class="btn btn-outline-danger btn-sm" [disabled]='processing' (click)='deleteJobTitle(job.job, i);'>Delete</button></td>
+          </tr>
+          <tr>
+            <td class='jobTitleTable'>
+              <div class="form-group">
+                <input type="text" class="form-control" id="addJob" [class.is-invalid]='!!errorJobTitle[job.job]' placeholder="Add Job Title" [(ngModel)]="addJobTitle[job.job]">
+                <small *ngIf='errorJobTitle[job.job]' class="form-text text-danger">{{errorJobTitle[job.job]}}</small>
+              </div>
+            <td>
+              <button type="button" class="btn btn-outline-success btn-sm" (click)='newJobTitle(job.job, addJobTitle[job.job]);'>Add</button>
+              <button *ngIf='errorJobTitle[job.job]' type="button" class="btn btn-outline-secondary btn-sm" (click)='errorJobTitle[job.job]=null; addJobTitle[job.job]=null'>Clear</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th class='jobTitleTable'>
+              <div class="form-group">
+                <input type="text" class="form-control" id="job" [class.is-invalid]='!!errorJob' placeholder="Add Job" [(ngModel)]="addJob">
+                <small *ngIf='errorJob' class="form-text text-danger">{{errorJob}}</small> <!-- error messages -->
+              </div>
+            </th>
+            <th>
+              <button type="button" class="btn btn-success" (click)='newJob(addJob);'>Add</button>
+              <button *ngIf='errorJob' type="button" class="btn btn-secondary" (click)='errorJob=null; addJob=null'>Clear</button>            
+            </th>
+          </tr>
+        </thead>
+      </table>
+    </div> <!-- Job Titles End -->
 
-      values : {{ BasicSiteInfo.value | json }}
-     
 
 
 
-    </div>
-
-
-
-
-
-  </div>
+  </div> <!-- Basic Information End -->
 
 
 
