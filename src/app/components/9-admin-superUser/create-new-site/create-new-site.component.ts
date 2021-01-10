@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { daysOfWeek } from '../../_custom/functions/dateFunctions';
 import { toCapitalFirst } from '../../_custom/functions/functions';
-import { getJobTitles } from '../../_custom/functions/newDefaultValues';
+import { getJobTitles, getNoticeboardSections } from '../../_custom/functions/newDefaultValues';
 
 @Component({
   selector: 'create-new-site',
@@ -27,6 +27,11 @@ export class CreateNewSiteComponent implements OnInit {
   errorJob      : String = null;
   addJobTitle   : any = [];
   errorJobTitle : any = [];
+  // Notice Board Variables
+  noticeboardSections : any = getNoticeboardSections;
+  addNBSection  : any = [];
+  errorNBSection: any = [];
+
 
   BasicSiteInfo = this.fb.group({
     SiteDetails: this.fb.group({
@@ -118,6 +123,40 @@ get postcode()        { return this.BasicSiteInfo.get('SiteAddress.postCode'); }
           this.errorJobTitle[job] = null;
         } else {
           this.errorJobTitle[job] = 'Duplicate Job Title';
+        }
+      }
+    }
+    this.processing = false;
+  }
+  // Functions For Noticeboard Sections
+  clearAllTitles(dept:String){
+    this.processing = true;
+    let i = this.noticeboardSections.findIndex((i : any)  => i.department === dept);
+    if(i!=-1) this.noticeboardSections[i].title = [];
+    this.processing = false;
+  }
+  deleteSectionTitle(dept:String, j:Number){
+    this.processing = true;
+    let i = this.noticeboardSections.findIndex((i : any) => i.department === dept);
+    if(i!=-1) {
+      if(j<this.noticeboardSections[i].title.length){
+        this.noticeboardSections[i].title.splice(j,1)
+      }
+    }
+    this.processing = false;
+  }
+  newNoticeboardTitle(dept:String, newTitle:String){
+    this.processing = true;
+    if(newTitle != undefined){
+      newTitle = toCapitalFirst(newTitle.trim());
+      let i = this.noticeboardSections.findIndex((i : any) => i.department === dept);
+      if(i!=-1 && newTitle!='') {
+        if(this.noticeboardSections[i].title.indexOf(newTitle)==-1){
+          this.noticeboardSections[i].title.push(newTitle);
+          this.addNBSection[i]=null;
+          this.errorNBSection[i] = null;
+        } else {
+          this.errorNBSection[i] = 'Duplicate Noticeboard Section Title';
         }
       }
     }
