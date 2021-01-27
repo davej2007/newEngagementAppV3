@@ -1,3 +1,8 @@
+/* Button Selector */
+.col {
+    padding : 7px 0
+}
+/* Tables CSS */
 .jobTitleTable {
     width: 70%;
     height: 40px;
@@ -6,17 +11,63 @@
 .noticeBoardTable{
     width: 80%;
     height: 40px;
-    vertical-align: bottom; 
+    vertical-align: bottom;
 }
-.col20 {
+/* admin table */
+.table{
+    margin:0;
+}
+.adminTable {
+    margin:10px;
+}
+.adminTable .header{
+    color: #495057;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+    padding: 10px;
+    font-weight: bold;
+}
+.adminCheckBox {
+    padding:.75rem, 0;
+    color:lightgrey;
+}
+.adminCheckBox.active {
+    color:red;
+}
+/* confirm Table */
+.table-warning{
+    width :33%;
+    text-align: center;
+    padding : .2rem;
+}
+.table-secondary{
+    text-align: center;
+    padding : .2rem;
+}
+.confirmTableItem {
     width : 20%;
-    background-color: lightgrey;
+    background-color: lightgray;
 }
-.col30 {
+.confirmTableValue {
     width : 30%;
 }
-.col33 {
+.confirmAdminTable {
     width :33%;
     text-align: center;
     color:lightgrey;
+    padding : .1rem;
+}
+.confirmAdminActive{
+    width :33%;
+    text-align: center;
+    color : red;
+}
+.noticeboardHeader {
+    width :33%;
+    text-align: center;
+    color: #495057;
+    background-color: #e9ecef;
+}
+.noticeboardItem {
+    margin-bottom : 2px;
 }

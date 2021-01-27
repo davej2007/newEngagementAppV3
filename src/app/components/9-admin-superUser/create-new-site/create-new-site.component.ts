@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { FileSelectDirective, FileUploader} from 'ng2-file-upload';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 import { daysOfWeek } from '../../_custom/functions/dateFunctions';
 import { toCapitalFirst } from '../../_custom/functions/functions';
-import { getJobTitles, getNoticeboardSections } from '../../_custom/functions/newDefaultValues';
+import { getAdminValues, getJobTitles, getNoticeboardSections } from '../../_custom/functions/newDefaultValues';
+
+const uri = environment.apiFileUpload+'/upload';
 
 @Component({
   selector: 'create-new-site',
@@ -13,7 +17,15 @@ export class CreateNewSiteComponent implements OnInit {
 
   constructor(
     private fb:FormBuilder
-  ) { }
+  ) {
+    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+      let entry = JSON.parse(response);
+      entry.imgSrc=environment.imageURL+'/uploads/'+entry.uploadname;
+      entry.index = this.uploadedFileList.length;
+      entry.used = false;       
+      this.uploadedFileList.push(entry);
+    };
+   }
   // Variable Definitions
   selectedPage  : String = 'A0';
   daysOfWeek    : any = daysOfWeek(0);
@@ -21,6 +33,9 @@ export class CreateNewSiteComponent implements OnInit {
   processing    : Boolean = false;
   successMsg    : String = null;
   errorMsg      : String = null;
+  
+  employeeName  : String = 'Admin User';
+  employeeNo    : String = '0000000';
   // Job Variables
   jobTitles     : any = getJobTitles;
   addJob        : String = null;
@@ -31,7 +46,8 @@ export class CreateNewSiteComponent implements OnInit {
   noticeboardSections : any = getNoticeboardSections;
   addNBSection  : any = [];
   errorNBSection: any = [];
-
+  // Admin Section Variables
+  adminSections :any = getAdminValues;
 
   BasicSiteInfo = this.fb.group({
     SiteDetails: this.fb.group({
@@ -79,8 +95,17 @@ get postcode()        { return this.BasicSiteInfo.get('SiteAddress.postCode'); }
   add_Line() {
     if(this.addressLine.value[this.addressLine.value.length-1]!='')  this.addressLine.push(this.fb.control(''));
   }
-  ngOnInit(): void {
-    console.log(this.jobTitles)
+  
+  // variables for file upload
+  uploader: FileUploader = new FileUploader({url: uri, itemAlias: 'photo'});
+  uploadedFileList:any = [];
+  selectedSiteImage = {index:-1, imgSrc: null, originalname: null, uploadname: null, used:false };
+  selectedCanteenImage  = {index:-1, imgSrc: null, originalname: null, uploadname: null, used:false };
+  
+  // Initilize File Uploader
+  ngOnInit() {
+    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
+
   }
   // Functions For Job Titles Sections
   newJob(addJob:String){
@@ -129,12 +154,6 @@ get postcode()        { return this.BasicSiteInfo.get('SiteAddress.postCode'); }
     this.processing = false;
   }
   // Functions For Noticeboard Sections
-  clearAllTitles(dept:String){
-    this.processing = true;
-    let i = this.noticeboardSections.findIndex((i : any)  => i.department === dept);
-    if(i!=-1) this.noticeboardSections[i].title = [];
-    this.processing = false;
-  }
   deleteSectionTitle(dept:String, j:Number){
     this.processing = true;
     let i = this.noticeboardSections.findIndex((i : any) => i.department === dept);
@@ -162,4 +181,5 @@ get postcode()        { return this.BasicSiteInfo.get('SiteAddress.postCode'); }
     }
     this.processing = false;
   }
+
 }

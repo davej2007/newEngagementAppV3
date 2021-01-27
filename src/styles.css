@@ -1,39 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-/* Nav Tabs */
-.nav-link  {
-    border-bottom: 3px solid black;
-}
-.nav-link .active {
-    color:darkgrey;
-    background-color:lightgray;
-    border-bottom: 1px solid black;
-    border-left: 3px solid black;
-    border-right: 3px solid black;
-    border-top: 3px solid black;
-}
-.sectionNav {
-    margin-top: 20px;
-    color : black;
-    font-size: 150%
-}
-.basicNav {
-    margin-top: 25px;
-    color : red;
-    font-size: 125%;
-    border-color:red;
-}
-.uploadNav {
-    margin-top: 25px;
-    color : green;
-    font-size: 125%;
-    border-color:green;
-}
-.adminRightsNav {
-    margin-top: 25px;
-    color : blue;
-    font-size: 125%;
-    border-color:blue;
-}
 
 .mainform {
     margin-top: 25px;

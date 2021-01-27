@@ -1,31 +1,38 @@
 <div class="container">
-  <ul class="nav nav-tabs nav-fill sectionNav">
-    <li class="nav-item">
-      <a class="nav-link" [ngClass]="{'active':selectedPage.charAt(0) === 'A'}" (click)='selectedPage="A0"'>Basic Info</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" [ngClass]="{'active':selectedPage.charAt(0) === 'B'}" (click)='selectedPage="B0"'>Upload Images</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" [ngClass]="{'active':selectedPage.charAt(0) === 'C'}" (click)='selectedPage="C0"'>Admin Rights</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" [ngClass]="{'active':selectedPage.charAt(0) === 'D'}" (click)='selectedPage="D0"'>Confirm</a>
-    </li>
-  </ul>
+  <div class="row">
+    <div class="col">
+      <button type="button" class="btn btn-outline-dark btn-block"
+              [ngClass]="{'active':selectedPage.charAt(0) === 'A'}" (click)='selectedPage="A0"'>General Site Info</button>
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-outline-dark btn-block"
+              [ngClass]="{'active':selectedPage.charAt(0) === 'B'}" (click)='selectedPage="B0"'>Upload Images</button>
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-outline-dark btn-block"
+              [ngClass]="{'active':selectedPage.charAt(0) === 'C'}" (click)='selectedPage="C0"'>Admin Rights</button>
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-outline-dark btn-block"
+              [ngClass]="{'active':selectedPage.charAt(0) === 'D'}" (click)='selectedPage="D0"'>Confirm & Save</button>
+    </div>
+  </div>
 
   <div *ngIf="selectedPage.charAt(0) === 'A'"> <!-- Basic Information -->
-    <ul class="nav nav-tabs nav-fill basicNav">
-      <li class="nav-item">
-        <a class="nav-link" [ngClass]="{'active':selectedPage.charAt(1) === '0'}" (click)='selectedPage="A0"'>Basic Info Form</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [ngClass]="{'active':selectedPage.charAt(1) === '1'}" (click)='selectedPage="A1"'>Job Titles</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [ngClass]="{'active':selectedPage.charAt(1) === '2'}" (click)='selectedPage="A2"'>Noticeboard Sections</a>
-      </li>
-    </ul>
+    <div class="row">
+      <div class="col">
+        <button type="button" class="btn btn-outline-warning btn-block"
+        [ngClass]="{'active':selectedPage.charAt(1) === '0'}" (click)='selectedPage="A0"'>Basic Info Form</button>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-outline-warning btn-block"
+        [ngClass]="{'active':selectedPage.charAt(1) === '1'}" (click)='selectedPage="A1"'>Job Titles</button>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-outline-warning btn-block"
+        [ngClass]="{'active':selectedPage.charAt(1) === '2'}" (click)='selectedPage="A2"'>Noticeboard Sections</button>
+      </div>
+    </div>
     <div class='mainform' *ngIf="selectedPage === 'A0'"> <!-- Site Information -->
       <h4>Basic Info Form</h4>
       <form [formGroup]="BasicSiteInfo">
@@ -196,92 +203,377 @@
   </div> <!-- Basic Information End -->
 
   <div *ngIf="selectedPage.charAt(0) === 'B'"> <!-- Upload Images -->
-    <ul class="nav nav-tabs nav-fill uploadNav">
-      <li class="nav-item">
-        <a class="nav-link" [ngClass]="{'active':selectedPage.charAt(1) === '0'}" (click)='selectedPage="B0"'>Upload Images</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [ngClass]="{'active':selectedPage.charAt(1) === '1'}" (click)='selectedPage="B1"'>Select Site Image</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [ngClass]="{'active':selectedPage.charAt(1) === '2'}" (click)='selectedPage="B2"'>Select Welcome Display</a>
-      </li>
-    </ul>
+    <div class="row">
+      <div class="col">
+        <button type="button" class="btn btn-outline-warning btn-block"
+        [ngClass]="{'active':selectedPage.charAt(1) === '0'}" (click)='selectedPage="B0"'>Upload Images</button>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-outline-warning btn-block"
+        [ngClass]="{'active':selectedPage.charAt(1) === '1'}" (click)='selectedPage="B1"'>Select Site Image</button>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-outline-warning btn-block"
+        [ngClass]="{'active':selectedPage.charAt(1) === '2'}" (click)='selectedPage="B2"'>Select Welcome Display</button>
+      </div>
+    </div>
     <div class='mainform' *ngIf="selectedPage === 'B0'"> <!-- Upload Images -->
-      <h4>Upload Images</h4>
+      <h4>Enter Details Of Images To Be Uploaded</h4>
+      <div class="row">
+        <div id="fileSelector">
+          <input type="file" name="fileUplaod" id="fileUpload" multiple ng2FileSelect [uploader]="uploader">
+        </div>
+      </div>
+      <table>
+        <tr *ngFor="let item of uploader.queue">
+          <td style='width:25%;'>{{item.file.name}}</td>
+          <td style='width:55%;'>
+            <div class="progress">
+              <div class="progress-bar bg-warning" role="progressbar"  [ngStyle]="{'width':item.progress+'%'}" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </td>
+          <td style='width:20%;'>
+            <button type="button" class="btn btn-dark" (click)="item.upload()">Upload</button>
+            <button type="button" class="btn btn-danger" (click)="item.remove()">Cancel</button>
+          </td>
+        </tr>
+      </table>                  
+      <div class="row" *ngIf="uploader?.queue?.length > 0">
+        <button type="button" class="btn btn-primary" (click)="uploader.uploadAll()">Upload All</button>
+      </div>
+      <br>
+      <h4>Uploaded Images</h4>
+      <div class='row'>
+        <div class='col-6 col-md-4 col-lg-3' *ngFor='let image of uploadedFileList; let i = index'>
+          <div class="card text-center">
+            <div class="card-header">
+                <small>Original File Name : </small>
+                <p>{{ image.originalname }}</p>
+            </div>
+            <div class="card-body">
+              <img [src]="image.imgSrc" [alt]="image.originalname" class='cardImage'>
+            </div>
+          </div>
+        </div>
+      </div>
     </div> <!-- Upload Images End -->
     <div class='mainform' *ngIf="selectedPage === 'B1'"> <!-- Select Site Image -->
       <h4>Select Site Image</h4>
+      <br>
+      <div class='row'>
+        <div class='col-12 col-md-6 col-lg-5'>
+          <div class="card text-center" *ngIf='selectedSiteImage.index!=-1'>
+            <div class="card-header">
+              <small>Original File Name : </small>
+              <p>{{ selectedSiteImage.originalname }}</p>
+            </div>
+            <div class="card-body">
+              <img [src]="selectedSiteImage.imgSrc" [alt]="selectedSiteImage.originalname" class='cardImage'>
+            </div>
+            <div class="card footer">
+            </div>
+          </div>
+        </div>
+        <div class='col-12 col-md-6 col-lg-7'>
+          <form [formGroup]='siteImageForm'>
+            <div class="form-group row"> <!-- title   -->
+              <label for="siteTitle" class="col-sm-3 col-form-label">Title</label>
+              <div class="col-sm-9">
+                <input [class.is-invalid]='(siteTitle.invalid) && siteTitle.touched'
+                formControlName='siteTitle' type="text" class="form-control" id="siteTitle"
+                placeholder="Image Title">
+              </div>
+            </div>
+            <div class="form-group row"> <!-- date   -->
+              <label for="date" class="col-sm-3 col-form-label">Date Created</label>
+              <div class="col-sm-9">
+                <input [class.is-invalid]='(siteDate.invalid) && siteDate.touched'
+                formControlName='siteDate' type="date" class="form-control" id="siteDate"
+                placeholder="Date Created">
+              </div>
+            </div>
+            <div class="form-group row"> <!-- Created By   -->
+              <label for="name" class="col-sm-3 col-form-label">Created By</label>
+              <div class="col-sm-9">
+                <span class='form-control' id='name'>{{ employeeName }}</span>
+              </div>
+            </div>
+            <div class="form-group row"> <!-- Created By   -->
+              <label for="num" class="col-sm-3 col-form-label"></label>
+              <div class="col-sm-9">
+                <span class='form-control' id='num'>{{ employeeNo }}</span>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <h4>All Available Images</h4>
+      <div class='row'>
+        <div class='col-6 col-md-4 col-lg-3' *ngFor='let image of uploadedFileList; let i = index'>
+          <div class="card text-center" [style.border-color] = "image.used ? 'black' : 'red'">
+            <div class="card-header">
+                <small>Original File Name : </small>
+                <p>{{ image.originalname }}</p>
+            </div>
+            <div class="card-body">
+              <img [src]="image.imgSrc" [alt]="image.originalname" class='cardImage'>
+            </div>
+            <div class="card-footer">
+              <button type="button" class="btn btn-primary" [disabled]="image.used" (click)='selectSiteImage(image)'>Select</button>
+            </div>
+          </div>
+        </div>
+      </div>
       
     </div> <!-- Select Site Image End -->
     <div class="mainform" *ngIf="selectedPage === 'B2'"> <!-- Select Welcome Display -->
       <h4>Select Welcome Display</h4>
-
+      <br>
+      <div class='row'>
+          <div class='col-12 col-md-6 col-lg-5'>
+            <div class="card text-center" *ngIf='selectedCanteenImage.index!=-1'>
+              <div class="card-header">
+                <small>Original File Name : </small>
+                <p>{{ selectedCanteenImage.originalname }}</p>
+              </div>
+              <div class="card-body">
+                <img [src]="selectedCanteenImage.imgSrc" [alt]="selectedCanteenImage.originalname" class='cardImage'>
+              </div>
+              <div class="card footer">
+              </div>
+            </div>
+          </div>
+          <div class='col-12 col-md-6 col-lg-7'>
+          <form [formGroup]='siteCanteenForm'>
+            <div class="form-group row"> <!-- title   -->
+              <label for="canteenTitle" class="col-sm-3 col-form-label">Title</label>
+              <div class="col-sm-9">
+                <input [class.is-invalid]='(canteenTitle.invalid) && canteenTitle.touched'
+                formControlName='canteenTitle' type="text" class="form-control" id="canteenTitle"
+                placeholder="Image Title">
+              </div>
+            </div>
+            <div class="form-group row"> <!-- date   -->
+              <label for="canteenDate" class="col-sm-3 col-form-label">Date Created</label>
+              <div class="col-sm-9">
+                <input [class.is-invalid]='(canteenDate.invalid) && canteenDate.touched'
+                formControlName='canteenDate' type="date" class="form-control" id="canteenDate"
+                placeholder="Date Created">
+              </div>
+            </div>
+            <div class="form-group row"> <!-- Created By   -->
+              <label for="name" class="col-sm-3 col-form-label">Created By</label>
+              <div class="col-sm-9">
+                <span class='form-control' id='name'>{{ employeeName }}</span>
+              </div>
+            </div>
+            <div class="form-group row"> <!-- Created By   -->
+              <label for="num" class="col-sm-3 col-form-label"></label>
+              <div class="col-sm-9">
+                <span class='form-control' id='num'>{{ employeeNo }}</span>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>                      
+      <h4>All Available Images</h4>
+      <div class='row'>
+        <div class='col-6 col-md-4 col-lg-3' *ngFor='let image of uploadedFileList; let i = index'>
+          <div class="card text-center" [style.border-color] = "image.used ? 'black' : 'red'">
+            <div class="card-header">
+              <small>Original File Name : </small>
+              <p>{{ image.originalname }}</p>
+            </div>
+            <div class="card-body">
+              <img [src]="image.imgSrc" [alt]="image.originalname" class='cardImage'>
+            </div>
+            <div class="card-footer">
+              <button type="button" class="btn btn-secondary" [disabled]="image.used" (click)='selectCanteenImage(image)'>Select</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div><!-- Select Welcome Display End -->
   </div> <!-- Upload Images End -->
 
   <div *ngIf="selectedPage.charAt(0) === 'C'"> <!-- Admin Rights -->
-    <ul class="nav nav-tabs nav-fill adminRightsNav">
-      <li class="nav-item">
-        <a class="nav-link" [ngClass]="{'active':selectedPage.charAt(1) === '0'}" (click)='selectedPage="C0"'>General Display</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [ngClass]="{'active':selectedPage.charAt(1) === '1'}" (click)='selectedPage="C1"'>General Employee</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [ngClass]="{'active':selectedPage.charAt(1) === '2'}" (click)='selectedPage="C2"'>Site Admin User</a>
-      </li>
-    </ul>
+    <div class="row">
+      <div class="col">
+        <button type="button" class="btn btn-outline-warning btn-block"
+        [ngClass]="{'active':selectedPage.charAt(1) === '0'}" (click)='selectedPage="C0"'>General Display</button>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-outline-warning btn-block"
+        [ngClass]="{'active':selectedPage.charAt(1) === '1'}" (click)='selectedPage="C1"'>General Employee</button>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-outline-warning btn-block"
+        [ngClass]="{'active':selectedPage.charAt(1) === '2'}" (click)='selectedPage="C2"'>Site Admin User</button>
+      </div>
+    </div>
     <div class='mainform' *ngIf="selectedPage === 'C0'"> <!-- General Display -->
-      <h4>General Display</h4>
+      <h4>Select Pages To Be Available On A General Display</h4>
+      <p>Remember A General Display Cannot Have Access To Employee Or Administrator Pages</p>
+      <div class='adminTable'>
+        <div *ngFor='let a of adminSections'>
+          <div class='row header'> {{ a.navBar }} </div>
+          <div class='row'>
+            <div class="col-12 col-sm-3 col-md-4 adminCheckBox" [class.active]='b.display' *ngFor='let b of a.section'>
+              <div class="form-group">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" [(ngModel)]='b.display'>
+                  <label class="form-check-label"> {{b.name}} </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div> <!-- General Display End -->
     <div class='mainform' *ngIf="selectedPage === 'C1'"> <!-- General Employee -->
-      <h4>General Employee</h4>
-      
+      <h4>Select Pages To Be Standard General Employeees Pages</h4>
+      <p>Remember A General Employee Should Not Have Access To Administrator Pages</p>
+      <p>Individual Pages Can Be Added To Employees As They Are Created</p>
+      <div class='adminTable'>
+        <div *ngFor='let a of adminSections'>
+          <div class='row header'> {{ a.navBar }} </div>
+          <div class='row'>
+            <div class="col-12 col-sm-3 col-md-4 adminCheckBox" [class.active]='b.employee' *ngFor='let b of a.section'>
+              <div class="form-group">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" [(ngModel)]='b.employee'>
+                  <label class="form-check-label"> {{b.name}} </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div> <!-- General Employee End -->
     <div class="mainform" *ngIf="selectedPage === 'C2'"> <!-- Site Admin User -->
-      <h4>Site Admin User</h4>
-
+      <h4>Select Pages To Be Main Site Admin Users Pages</h4>
+      <p>Remember A Site Administrator Cannot Have Access To Employee Pages</p>
+      <div class='adminTable'>
+        <div *ngFor='let a of adminSections'>
+          <div class='row header'> {{ a.navBar }} </div>
+          <div class='row'>
+            <div class="col-12 col-sm-3 col-md-4 adminCheckBox" [class.active]='b.admin' *ngFor='let b of a.section'>
+              <div class="form-group">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" [(ngModel)]='b.admin'>
+                  <label class="form-check-label"> {{b.name}} </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div><!-- Site Admin User End -->
   </div> <!-- Admin Rights End -->
 
   <div *ngIf="selectedPage.charAt(0) === 'D'"> <!-- Confirm Details & Save -->
-    <ul class="nav nav-tabs nav-fill basicNav">
-      <li class="nav-item">
-        <a class="nav-link" [ngClass]="{'active':selectedPage.charAt(1) === '0'}" (click)='selectedPage="D0"'>General Information</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [ngClass]="{'active':selectedPage.charAt(1) === '1'}" (click)='selectedPage="D1"'>Images</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [ngClass]="{'active':selectedPage.charAt(1) === '2'}" (click)='selectedPage="D2"'>Default User Pages</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [ngClass]="{'active':selectedPage.charAt(1) === '3'}" (click)='selectedPage="D3"'>Initials Settings</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [ngClass]="{'active':selectedPage.charAt(1) === '4'}" (click)='selectedPage="D4"'>Create</a>
-      </li>
-    </ul>
+    <div class="row">
+      <div class="col">
+        <button type="button" class="btn btn-outline-primary btn-block"
+        [ngClass]="{'active':selectedPage.charAt(1) === '0'}" (click)='selectedPage="D0"'>General Information</button>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-outline-primary btn-block"
+        [ngClass]="{'active':selectedPage.charAt(1) === '1'}" (click)='selectedPage="D1"'>Images</button>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-outline-primary btn-block"
+        [ngClass]="{'active':selectedPage.charAt(1) === '2'}" (click)='selectedPage="D2"'>Default User Pages</button>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-outline-primary btn-block"
+        [ngClass]="{'active':selectedPage.charAt(1) === '3'}" (click)='selectedPage="D3"'>Initials Settings</button>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-outline-danger btn-block"
+        [ngClass]="{'active':selectedPage.charAt(1) === '4'}" (click)='selectedPage="D4"'>Create</button>
+      </div>
+    </div>
+
     <div class='mainform' *ngIf="selectedPage === 'D0'"> <!-- General Information -->
-      <h4>General Information</h4>
+      <h4>Confirm : Basic Information</h4>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td class='confirmTableItem'>Site Ref Code</td> <td class='confirmTableValue'>{{ SD_Ref.value }}</td>
+            <td class='confirmTableItem'>Site Name</td> <td class='confirmTableValue'>{{ SD_Name.value }}</td>
+          </tr>
+          <tr>
+            <td class='confirmTableItem'>Site Opened On</td><td class='confirmTableValue'>{{ SD_Date.value }}</td>
+            <td class='confirmTableItem'>Site Start Off Week</td> <td class='confirmTableValue'>{{ daysOfWeek[SD_Day.value] }}</td>
+          </tr>
+          <tr>
+            <td class='confirmTableItem'>Site Contact Name</td> <td class='confirmTableValue'>{{ CD_Name.value }}</td>
+            <td class='confirmTableItem'>Site Contact Title</td> <td class='confirmTableValue'>{{ CD_Title.value }}</td> </tr>
+          <tr>
+            <td class='confirmTableItem'>Site Contact Email</td> <td class='confirmTableValue'>{{ CD_Email.value }}</td>
+            <td class='confirmTableItem'>Site Contact Telephone No</td> <td class='confirmTableValue'>{{ CD_Tel.value }}</td>
+          </tr>
+          <tr>
+            <td class='confirmTableItem'>Site Address</td>
+            <td colspan="3">
+              <p *ngFor="let line of addressLine.value">{{line}}</p>
+              <p>{{ postcode.value }}</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div> <!-- General Information End -->
     <div class='mainform' *ngIf="selectedPage === 'D1'"> <!-- Images -->
       <h4>Images</h4>
       
     </div> <!-- Images End -->
     <div class="mainform" *ngIf="selectedPage === 'D2'"> <!-- Default User Pages -->
-      <h4>Default User Pages</h4>
-
+      <h4>Confirm : Default User Pages</h4>
+      <table class="table">
+        <thead>
+          <tr class="table-warning">
+            <th>Display</th>
+            <th>Employee</th>
+            <th>Administrator</th>
+          </tr>
+        </thead>
+        <tbody  *ngFor='let a of adminSections'>
+          <th class='table-secondary' colspan="3">{{ a.navBar }}</th>
+          <tr *ngFor='let b of a.section'>
+            <td class='confirmAdminTable' [class.confirmAdminActive]='b.display'>{{b.name}}</td>
+            <td class='confirmAdminTable' [class.confirmAdminActive]='b.employee'>{{b.name}}</td>
+            <td class='confirmAdminTable' [class.confirmAdminActive]='b.admin'>{{b.name}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div><!-- Default User Pages End -->
     <div class="mainform" *ngIf="selectedPage === 'D3'"> <!-- Initials Settings -->
-      <h4>Initials Settings</h4>
-
+      <h4>Confirm : Initial Settings</h4>
+      <!-- Notice Board Sections -->
+      <table class='table'>
+        <thead class="thead-dark"> <tr> <th>Notice Board Sections</th> <th></th> </tr> </thead>
+        <tbody>
+          <tr *ngFor='let notice of noticeboardSections'>
+            <td class='noticeboardHeader'>{{ notice.department }}</td>
+            <td><p class='noticeboardItem' *ngFor='let section of notice.title'>{{ section }}</p></td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- Job Titles -->
+      <table class='table'>
+        <thead class="thead-dark"> <tr> <th>Job Titles</th> <th></th> </tr> </thead>
+        <tbody>
+          <tr *ngFor='let job of jobTitles'>
+            <td class='noticeboardHeader'>{{ job.job }}</td>
+            <td><p class='noticeboardItem' *ngFor='let titles of job.title'>{{ titles }}</p></td>
+          </tr>
+        </tbody>
+      </table>
     </div><!-- Initials Settings End -->
     <div class="mainform" *ngIf="selectedPage === 'D4'"> <!-- Create -->
       <h4>Create</h4>
 
     </div><!-- Create End -->
   </div> <!-- Confirm & Save End -->
-
 </div>

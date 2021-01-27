@@ -32,7 +32,7 @@ ng g m components/0-default/default --flat --routing
 ng g g components/custom/guard/AUTH --flat --skip-tests
 
 1. ng g c components/0-default/default-page-not-found --skipTests=true --prefix 
-1. ng g c components/0-default/default-nav-bar --skipTests=true --prefix 
+1. ng new engagementapp --routing -S 
 2. ng g s components/service/auth --skipTests=true 
 3. ng g pipe components/custom/pipe/display.... --skipTests=true 
 3. ng s -o ==== ng serve 

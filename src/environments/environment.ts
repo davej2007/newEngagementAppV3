@@ -1,9 +1,12 @@
 export const environment = {
   production: false,
   name:'(DEV)',
-  apiUser  :'http://localhost:8080/api/user',
-  apiEvent :'http://localhost:8080/api/event',
-  apiTeam  :'http://localhost:8080/api/team',
-  apiAuth  :'http://localhost:8080/api/auth',
-  
+  apiAuth         :'http://localhost:3000/api/auth',
+  apiEmployee     :'http://localhost:3000/api/employee',
+  apiSite         :'http://localhost:3000/api/site',
+  apiNoticeBoard  :'http://localhost:3000/api/noticeboard',
+  apiRota         :'http://localhost:3000/api/rota',  
+  apiFile         :'http://localhost:3000/api/file',  
+  apiFileUpload   :'http://localhost:3000/api/fileUpload',
+  imageURL        :'http://localhost:3000'
 }
